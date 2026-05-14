@@ -6,6 +6,7 @@ import { useSetAtom } from "jotai";
 import { Heart } from "lucide-react";
 
 import { API } from "../../../lib/api/endpoints";
+import { buildApiUrl } from "../../../lib/api/baseUrl";
 import { authAtom, type AuthUser } from "../../../atoms/authAtom";
 
 interface TossLoginResponse {
@@ -33,7 +34,7 @@ export default function TossLoginPage() {
       const { authorizationCode, referrer } = await appLogin();
 
       // 서버 요청
-      const url = `${import.meta.env.VITE_API_BASE_URL}${API.MEMBER.TOSS_LOGIN}`;
+      const url = buildApiUrl(API.MEMBER.TOSS_LOGIN);
 
       const res = await fetch(url, {
         method: "POST",

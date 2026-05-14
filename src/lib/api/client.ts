@@ -1,5 +1,7 @@
+import { buildApiUrl } from "./baseUrl";
+
 export async function apiClient<T>(path: string, options?: RequestInit): Promise<T> {
-  const url = `${import.meta.env.VITE_API_BASE_URL}${path}`;
+  const url = buildApiUrl(path);
 
   const res = await fetch(url, {
     headers: {
